@@ -1,6 +1,7 @@
-<?php if ($record->foto_masuk): ?>
-    <a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=masuk" target="_blank">
-        <img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=masuk" style="max-width:80px;border-radius:4px;">
+<?php if ($record->foto_masuk && file_exists(storage_path('app/'.$record->foto_masuk))): ?>
+    <?php $fp = storage_path('app/'.$record->foto_masuk); $mt = mime_content_type($fp) ?: 'image/jpeg'; ?>
+    <a href="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" target="_blank">
+        <img src="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" style="max-width:80px;border-radius:4px;">
     </a>
 <?php else: ?>
     -

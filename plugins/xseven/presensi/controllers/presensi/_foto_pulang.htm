@@ -1,6 +1,7 @@
-<?php if ($record->foto_pulang): ?>
-    <a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=pulang" target="_blank">
-        <img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=pulang" style="max-width:80px;border-radius:4px;">
+<?php if ($record->foto_pulang && file_exists(storage_path('app/'.$record->foto_pulang))): ?>
+    <?php $fp = storage_path('app/'.$record->foto_pulang); $mt = mime_content_type($fp) ?: 'image/jpeg'; ?>
+    <a href="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" target="_blank">
+        <img src="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" style="max-width:80px;border-radius:4px;">
     </a>
 <?php else: ?>
     -

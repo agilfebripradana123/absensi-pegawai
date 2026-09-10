@@ -16,7 +16,7 @@
 
 <script>
 let currentType='';let stream=null;let photoData='';
-function updateClock(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' WIB'}
+function updateClock(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'}).replace(/\./g,':')+' WIB'}
 setInterval(updateClock,1000);updateClock();
 
 async function openCamera(type){

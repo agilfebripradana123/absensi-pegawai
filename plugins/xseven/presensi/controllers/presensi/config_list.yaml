@@ -6,7 +6,7 @@ list:
         column: tanggal
         direction: desc
     columns:
-        pegawai[nama]:
+        pegawai_nama:
             label: Nama Pegawai
             relation: pegawai
             select: nama
@@ -29,3 +29,4 @@ list:
         status:
             label: Status
             type: text
+

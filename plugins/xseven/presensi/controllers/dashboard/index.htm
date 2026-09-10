@@ -47,8 +47,8 @@
                     <td><?= e($p->tanggal) ?></td>
                     <td><?= e($p->jam_masuk ?? '-') ?></td>
                     <td><?= e($p->jam_pulang ?? '-') ?></td>
-                    <td><?php if($p->foto_masuk): ?><a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=masuk" target="_blank"><img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=masuk" style="max-width:60px;border-radius:4px" alt="Foto Masuk"></a><?php else: ?>-<?php endif; ?></td>
-                    <td><?php if($p->foto_pulang): ?><a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=pulang" target="_blank"><img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=pulang" style="max-width:60px;border-radius:4px" alt="Foto Pulang"></a><?php else: ?>-<?php endif; ?></td>
+                    <td><?php if($p->foto_masuk && file_exists(storage_path('app/'.$p->foto_masuk))): ?><?php $fp=storage_path('app/'.$p->foto_masuk);$mt=mime_content_type($fp)?:'image/jpeg'; ?><a href="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" target="_blank"><img src="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" style="max-width:60px;border-radius:4px" alt="Foto Masuk"></a><?php else: ?>-<?php endif; ?></td>
+                    <td><?php if($p->foto_pulang && file_exists(storage_path('app/'.$p->foto_pulang))): ?><?php $fp=storage_path('app/'.$p->foto_pulang);$mt=mime_content_type($fp)?:'image/jpeg'; ?><a href="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" target="_blank"><img src="data:<?= $mt ?>;base64,<?= base64_encode(file_get_contents($fp)) ?>" style="max-width:60px;border-radius:4px" alt="Foto Pulang"></a><?php else: ?>-<?php endif; ?></td>
                     <td><span class="label label-<?= $p->status === 'Hadir' ? 'success' : 'warning' ?>"><?= e($p->status) ?></span></td>
                 </tr>
                 <?php endforeach; ?>

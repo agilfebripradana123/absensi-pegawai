@@ -2,6 +2,7 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
+use Illuminate\Support\Facades\Response;
 use XSeven\Presensi\Models\Presensi as PresensiModel;
 
 class Presensi extends Controller
@@ -12,6 +13,7 @@ class Presensi extends Controller
 
     public $listConfig = 'config_list.yaml';
     public $requiredPermissions = ['xseven.presensi.view_presensi'];
+    protected $publicActions = ['viewPhoto'];
 
     public function __construct()
     {
@@ -22,15 +24,16 @@ class Presensi extends Controller
     public function viewPhoto()
     {
         $id = input('id');
-        $type = input('type'); // masuk|pulang
+        $type = input('type');
         $record = PresensiModel::findOrFail($id);
         $field = $type === 'pulang' ? 'foto_pulang' : 'foto_masuk';
         $path = storage_path('app/' . $record->$field);
 
         if (!$record->$field || !file_exists($path)) {
-            return \Response::make('Foto tidak ditemukan', 404);
+            return Response::make('Foto tidak ditemukan', 404);
         }
 
-        return \Response::file($path);
+        $mime = mime_content_type($path) ?: 'image/jpeg';
+        return Response::file($path, ['Content-Type' => $mime]);
     }
 }

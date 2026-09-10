@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="pull-left card text-center" style="width:100%;padding:20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px">
+                <h4 style="margin:0;color:#64748b"><?= e($totalPegawai) ?></h4>
+                <p style="margin:4px 0 0;color:#475569;font-size:.85rem">Total Pegawai</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="pull-left card text-center" style="width:100%;padding:20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px">
+                <h4 style="margin:0;color:#16a34a"><?= e($aktifPegawai) ?></h4>
+                <p style="margin:4px 0 0;color:#166534;font-size:.85rem">Pegawai Aktif</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="pull-left card text-center" style="width:100%;padding:20px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px">
+                <h4 style="margin:0;color:#2563eb"><?= e($presensiHariIni) ?></h4>
+                <p style="margin:4px 0 0;color:#1e40af;font-size:.85rem">Presensi Hari Ini</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="pull-left card text-center" style="width:100%;padding:20px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px">
+                <h4 style="margin:0;color:#ea580c"><?= e($presensiTerbaru->count()) ?></h4>
+                <p style="margin:4px 0 0;color:#9a3412;font-size:.85rem">Data Terbaru</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="margin-top:24px">Presensi Terbaru</h3>
+    <div class="list-controls">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Tanggal</th>
+                    <th>Jam Masuk</th>
+                    <th>Jam Pulang</th>
+                    <th>Foto Masuk</th>
+                    <th>Foto Pulang</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($presensiTerbaru as $p): ?>
+                <tr>
+                    <td><?= e($p->pegawai->nama ?? '-') ?></td>
+                    <td><?= e($p->tanggal) ?></td>
+                    <td><?= e($p->jam_masuk ?? '-') ?></td>
+                    <td><?= e($p->jam_pulang ?? '-') ?></td>
+                    <td><?php if($p->foto_masuk): ?><a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=masuk" target="_blank"><img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=masuk" style="max-width:60px;border-radius:4px" alt="Foto Masuk"></a><?php else: ?>-<?php endif; ?></td>
+                    <td><?php if($p->foto_pulang): ?><a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=pulang" target="_blank"><img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $p->id ?>&type=pulang" style="max-width:60px;border-radius:4px" alt="Foto Pulang"></a><?php else: ?>-<?php endif; ?></td>
+                    <td><span class="label label-<?= $p->status === 'Hadir' ? 'success' : 'warning' ?>"><?= e($p->status) ?></span></td>
+                </tr>
+                <?php endforeach; ?>
+                <?php if ($presensiTerbaru->isEmpty()): ?>
+                <tr><td colspan="7" style="text-align:center">Belum ada data.</td></tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

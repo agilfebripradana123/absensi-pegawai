@@ -1,0 +1,31 @@
+modelClass: XSeven\Presensi\Models\Presensi
+list:
+    title: Data Presensi
+    noRecordsMessage: Belum ada data presensi
+    defaultSort:
+        column: tanggal
+        direction: desc
+    columns:
+        pegawai[nama]:
+            label: Nama Pegawai
+            relation: pegawai
+            select: nama
+            searchable: true
+        tanggal:
+            label: Tanggal
+            type: date
+        jam_masuk:
+            label: Jam Masuk
+        jam_pulang:
+            label: Jam Pulang
+        foto_masuk:
+            label: Foto Masuk
+            type: partial
+            path: ~/plugins/xseven/presensi/controllers/presensi/_foto.htm
+        foto_pulang:
+            label: Foto Pulang
+            type: partial
+            path: ~/plugins/xseven/presensi/controllers/presensi/_foto_pulang.htm
+        status:
+            label: Status
+            type: text

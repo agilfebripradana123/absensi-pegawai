@@ -1,0 +1,40 @@
+modelClass: XSeven\Presensi\Models\Pegawai
+form:
+    name: Pegawai
+    defaultRedirect: xseven/presensi/pegawai
+    create:
+        redirect: xseven/presensi/pegawai/update/:id
+    update:
+        redirect: xseven/presensi/pegawai
+    fields:
+        nama:
+            label: Nama
+            type: text
+            span: left
+        jabatan:
+            label: Jabatan
+            type: text
+            span: right
+        departemen:
+            label: Departemen
+            type: text
+            span: left
+        status:
+            label: Status
+            type: dropdown
+            span: right
+        email:
+            label: Email (untuk login)
+            type: text
+            span: left
+            context: create
+        username:
+            label: Username (untuk login)
+            type: text
+            span: right
+            context: create
+        password:
+            label: Password
+            type: password
+            span: left
+            context: create

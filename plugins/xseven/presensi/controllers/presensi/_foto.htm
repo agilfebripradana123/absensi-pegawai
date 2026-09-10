@@ -1,0 +1,7 @@
+<?php if ($record->foto_masuk): ?>
+    <a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=masuk" target="_blank">
+        <img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=masuk" style="max-width:80px;border-radius:4px;">
+    </a>
+<?php else: ?>
+    -
+<?php endif; ?>

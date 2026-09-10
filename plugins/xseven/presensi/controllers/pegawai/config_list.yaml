@@ -1,0 +1,24 @@
+modelClass: XSeven\Presensi\Models\Pegawai
+list:
+    title: Data Pegawai
+    recordUrl: xseven/presensi/pegawai/update/:id
+    defaultSort:
+        column: id
+        direction: desc
+    columns:
+        id:
+            label: ID
+            searchable: true
+        nama:
+            label: Nama
+            searchable: true
+        jabatan:
+            label: Jabatan
+        departemen:
+            label: Departemen
+        status:
+            label: Status
+            type: switch
+        created_at:
+            label: Dibuat
+            type: datetime

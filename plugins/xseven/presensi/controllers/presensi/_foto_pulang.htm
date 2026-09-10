@@ -1,0 +1,7 @@
+<?php if ($record->foto_pulang): ?>
+    <a href="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=pulang" target="_blank">
+        <img src="<?= Backend::url('xseven/presensi/presensi/viewPhoto') ?>?id=<?= $record->id ?>&type=pulang" style="max-width:80px;border-radius:4px;">
+    </a>
+<?php else: ?>
+    -
+<?php endif; ?>

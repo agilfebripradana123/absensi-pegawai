@@ -28,14 +28,16 @@ nbproject
 _ide_helper.php
 .zed
 
-# Other ignores
-.DS_Store
-package-lock.json
-.phpunit.cache
-node_modules
+# Other ignores 
+.DS_Store 
+package-lock.json 
+.phpunit.cache 
+node_modules 
+
+# Database export
+*.sql
 
 # Ignore generated public directory from `winter:mirror public`
 public
-
 
 AGENTS.md
